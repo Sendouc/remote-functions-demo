@@ -1,1 +1,1 @@
-<p>{await 'hello'}</p>
+<p>home</p>
