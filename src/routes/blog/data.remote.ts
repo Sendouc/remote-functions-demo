@@ -1,4 +1,8 @@
-export const posts = [
+import * as v from 'valibot';
+import { query } from '$app/server';
+import { error } from '@sveltejs/kit';
+
+const posts = [
 	{
 		slug: 'welcome',
 		title: 'Welcome to the Aperture Science computer-aided enrichment center',
@@ -19,3 +23,14 @@ export const posts = [
 		content: "<p>I'm making a note here: HUGE SUCCESS.</p>"
 	}
 ];
+
+export const getSummaries = query(async () => {
+	return posts.map((post) => ({
+		slug: post.slug,
+		title: post.title
+	}));
+});
+
+export const getPost = query(v.string(), async (slug) => {
+	return posts.find((post) => post.slug === slug) ?? error(404);
+});

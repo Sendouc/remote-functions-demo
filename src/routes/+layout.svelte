@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import '../app.css';
+
 	let { children } = $props();
 </script>
 
@@ -11,4 +13,8 @@
 	{@render children()}
 
 	{#snippet pending()}{/snippet}
+
+	{#snippet failed(error)}
+		<p>something went horribly wrong: {(error as Error).message}</p>
+	{/snippet}
 </svelte:boundary>

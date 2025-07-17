@@ -1,11 +1,11 @@
 <script>
-	let { data } = $props();
+	import { getSummaries } from './data.remote';
 </script>
 
 <h1>blog</h1>
 
 <ul>
-	{#each data.summaries as { slug, title }}
+	{#each await getSummaries() as { slug, title }}
 		<li><a href="/blog/{slug}">{title}</a></li>
 	{/each}
 </ul>

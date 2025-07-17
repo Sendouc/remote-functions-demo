@@ -1,6 +1,10 @@
 <script>
-	let { data } = $props();
+	import { getPost } from '../data.remote.js';
+
+	let { params } = $props();
+
+	let post = $derived(await getPost(params.slug));
 </script>
 
-<h1>{data.post.title}</h1>
-<div>{@html data.post.content}</div>
+<h1>{post.title}</h1>
+<div>{@html post.content}</div>
