@@ -1,6 +1,6 @@
 import * as v from 'valibot';
-import { query } from '$app/server';
-import { error } from '@sveltejs/kit';
+import { form, query } from '$app/server';
+import { error, redirect } from '@sveltejs/kit';
 
 const posts = [
 	{
@@ -33,4 +33,23 @@ export const getSummaries = query(async () => {
 
 export const getPost = query(v.string(), async (slug) => {
 	return posts.find((post) => post.slug === slug) ?? error(404);
+});
+
+export const createPost = form((data) => {
+	const title = data.get('title');
+	const content = data.get('content');
+
+	if (typeof title !== 'string' || typeof content !== 'string') {
+		error(400, 'Title and content are required');
+	}
+
+	const slug = title.toLowerCase().replace(/ /g, '-');
+
+	posts.push({
+		slug,
+		title,
+		content
+	});
+
+	redirect(303, `/blog/${slug}`);
 });

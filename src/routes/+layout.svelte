@@ -1,15 +1,29 @@
 <script lang="ts">
+	import { logout, me } from '$lib/auth.remote';
 	import '../app.css';
 
 	let { children } = $props();
 </script>
 
-<nav>
-	<a href="/">home</a>
-	<a href="/blog">blog</a>
-</nav>
-
 <svelte:boundary>
+	<nav>
+		<div class="links">
+			<a href="/">home</a>
+			<a href="/blog">blog</a>
+		</div>
+
+		<div class="controls">
+			{#if await me()}
+				<form {...logout}>
+					<span>logged in as {(await me())!.name}</span>
+					<button>logout</button>
+				</form>
+			{:else}
+				<a href="/login">login</a>
+			{/if}
+		</div>
+	</nav>
+
 	{@render children()}
 
 	{#snippet pending()}{/snippet}
@@ -18,3 +32,20 @@
 		<p>something went horribly wrong: {(error as Error).message}</p>
 	{/snippet}
 </svelte:boundary>
+
+<style>
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+		height: 2rem;
+	}
+
+	form {
+		flex-direction: row;
+	}
+
+	button {
+	}
+</style>

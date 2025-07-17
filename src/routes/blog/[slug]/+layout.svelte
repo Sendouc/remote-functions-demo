@@ -1,4 +1,5 @@
 <script>
+	import { me } from '$lib/auth.remote';
 	import { getSummaries } from '../data.remote.js';
 
 	let { children } = $props();
@@ -18,6 +19,10 @@
 				</li>
 			{/each}
 		</ul>
+
+		{#if await me()}
+			<a href="/blog/post">Create new post</a>
+		{/if}
 	</aside>
 </div>
 
