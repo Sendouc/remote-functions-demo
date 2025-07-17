@@ -1,0 +1,1 @@
+<p>{await 'hello'}</p>
