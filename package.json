@@ -28,10 +28,7 @@
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"esbuild"
-		],
-		"overrides": {
-			"@sveltejs/kit": "link:../../../KIT/kit/packages/kit"
-		}
+		]
 	},
 	"dependencies": {
 		"valibot": "^1.1.0"
