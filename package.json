@@ -15,7 +15,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^5.6.3",
-		"@sveltejs/kit": "https://pkg.pr.new/sveltejs/kit/@sveltejs/kit@95a4a92",
+		"@sveltejs/kit": "https://pkg.pr.new/sveltejs/kit/@sveltejs/kit@f80a21b",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
