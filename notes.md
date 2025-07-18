@@ -63,3 +63,19 @@ for await (const t of time()) {
 
 <p>the time is {await time()}</p>
 ```
+
+```svelte
+<script>
+	import { t } from '$app/translations';
+
+	let { name } = $props();
+</script>
+
+<h1>{await t.greet(name)}</h1>
+
+<select bind:value={() => t.$language, (l) => t.$language = l}>
+	{#each t.$languages as { code, name }}
+		<option value={code}>{name}</option>
+	{/each}
+</select>
+```
